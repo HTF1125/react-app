@@ -1,3 +1,3 @@
 export const Menu = () => {
-  return <h1>THIS IS THE HOME PAGE</h1>;
+  return <h1>THIS IS THE MENU PAGE</h1>;
 };
