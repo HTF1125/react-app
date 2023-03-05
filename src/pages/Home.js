@@ -25,3 +25,4 @@ export const Home = () => {
     </h1>
   );
 };
+
