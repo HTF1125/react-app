@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
@@ -27,17 +26,18 @@ const App = () => {
     };
 
     const response = await fetch("/react", responseOptions);
-    const data = await response.text();
 
     if (!response.ok) {
       console.log("something messed up!");
-    };
-  }
+    }
+    else {
+      const data = await response.json();
+    }
+  };
 
   useEffect(() => {
     getWelcomeMessage();
   }, []);
-
 
   return (
     <div className="App">
@@ -56,15 +56,6 @@ const App = () => {
       </AppContext.Provider>
     </div>
   );
-}
-=======
-import React from 'react';
-import { DatePicker } from 'antd';
-import React from 'react';
-
-const App = () => {
-  return <DatePicker />;
 };
->>>>>>> 24460613bd39f49f151d62a258593ec45054fe55
 
 export default App;
