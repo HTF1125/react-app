@@ -1,61 +1,37 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Profile } from "./pages/Profile";
-import { Contact } from "./pages/Contact";
-import { Navbar } from "./components/Navbar";
-import { useState, createContext, useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-export const AppContext = createContext();
+import { ThemeProvider, Box, Typography, CssBaseline } from "@mui/material";
+import theme from "./config/theme";
+import SideNav from "./components/SideNav";
+import AppHeader from "./components/AppHeader";
 
-const App = () => {
-  const [username, setUsername] = useState("Robert");
-  const client = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-      },
-    },
-  });
+import React from "react";
+import "./App.css";
 
-  const getWelcomeMessage = async () => {
-    const responseOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const response = await fetch("/react", responseOptions);
-
-    if (!response.ok) {
-      console.log("something messed up!");
-    }
-    else {
-      const data = await response.json();
-    }
-  };
-
-  useEffect(() => {
-    getWelcomeMessage();
-  }, []);
-
+function App() {
   return (
-    <div className="App">
-      <AppContext.Provider value={{ username, setUsername }}>
-        <QueryClientProvider client={client}>
-          <BrowserRouter>
-            <Navbar></Navbar>
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/profile" element={<Profile />}></Route>
-              <Route path="/contact" element={<Contact />}></Route>
-              <Route path="*" element={<h1>PAGE NOT FOUND</h1>}></Route>
-            </Routes>
-          </BrowserRouter>
-        </QueryClientProvider>
-      </AppContext.Provider>
-    </div>
+    <React.Fragment>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AppHeader></AppHeader>
+        <Box sx={styles.container}>
+          <SideNav></SideNav>
+          <Typography variant="h8">Hello World</Typography>
+          <Box component={"main"} sx={styles.mainSection}></Box>
+        </Box>
+      </ThemeProvider>
+    </React.Fragment>
   );
+}
+
+/** @type {import("@mui/material").SxProps} */
+const styles = {
+  container: {
+    display: "flex",
+    bgcolor: "neutral.light",
+    height: "calc(100%-64px)",
+  },
+  mainSection: {
+    p: 20
+  }
 };
 
 export default App;
