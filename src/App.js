@@ -1,37 +1,54 @@
-import { ThemeProvider, Box, Typography, CssBaseline } from "@mui/material";
-import theme from "./config/theme";
-import SideNav from "./components/SideNav";
-import AppHeader from "./components/AppHeader";
-
-import React from "react";
-import "./App.css";
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
+import Topbar from "./pages/global/Topbar";
+import Sidebar from "./pages/global/Sidebar";
+import Dashboard from "./pages/dashboard";
+import Securities from "./pages/securities";
+// import Invoices from "./pages/invoices";
+// import Contacts from "./pages/contacts";
+// import Bar from "./pages/bar";
+// import Form from "./pages/form";
+// import Line from "./pages/line";
+// import Pie from "./pages/pie";
+// import FAQ from "./pages/faq";
+// import Geography from "./pages/geography";
+// import Calendar from "./pages/calendar";
 
 function App() {
+  const [theme, colorMode] = useMode();
+
   return (
-    <React.Fragment>
+    <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppHeader></AppHeader>
-        <Box sx={styles.container}>
-          <SideNav></SideNav>
-          <Typography variant="h8">Hello World</Typography>
-          <Box component={"main"} sx={styles.mainSection}></Box>
-        </Box>
+
+        <div className="app">
+          <Sidebar />
+          <main className="content">
+            <Topbar />
+
+
+            <Routes>
+              <Route path="/" element={<Dashboard />}></Route>
+              <Route path="/tickers" element={<Securities />}></Route>
+              {/* <Route path="/contacts" element={<Contacts />}></Route> */}
+              {/* <Route path="/invocies" element={<Invoices />}></Route> */}
+              {/* <Route path="/form" element={<Form />}></Route> */}
+              {/* <Route path="/bar" element={<Bar />}></Route> */}
+              {/* <Route path="/pie" element={<Pie />}></Route> */}
+              {/* <Route path="/line" element={<Line />}></Route> */}
+              {/* <Route path="/faq" element={<FAQ />}></Route> */}
+              {/* <Route path="/geography" element={<Geography />}></Route> */}
+              {/* <Route path="/calendar" element={<Calendar />}></Route> */}
+            </Routes>
+
+
+          </main>
+        </div>
       </ThemeProvider>
-    </React.Fragment>
+    </ColorModeContext.Provider>
   );
 }
-
-/** @type {import("@mui/material").SxProps} */
-const styles = {
-  container: {
-    display: "flex",
-    bgcolor: "neutral.light",
-    height: "calc(100%-64px)",
-  },
-  mainSection: {
-    p: 20
-  }
-};
 
 export default App;
