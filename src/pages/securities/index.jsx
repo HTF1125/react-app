@@ -6,7 +6,6 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Securities = () => {
@@ -83,7 +82,7 @@ const Securities = () => {
 
   return (
     <Box m="20px">
-      <Header title="Tickers" subtitle="All Avaiable Tickers" />
+      <Header title="OVERVIEW" subtitle="Market" />
       <Box
         m="40px 0 0 0"
         height="75vh"
