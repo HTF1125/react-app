@@ -12,8 +12,6 @@ const Securities = () => {
   const [data, setData] = useState([]);
   const client = axios.create({ baseURL: "http://127.0.0.1:8000/api" });
 
-  console.log("hello world.");
-
   useEffect(() => {
     client.get("/securities").then((response) => {
       setData(response.data);
@@ -115,7 +113,6 @@ const Securities = () => {
         <DataGrid
           checkboxSelection
           density="compact"
-          // loading="true"
           rows={data}
           columns={columns}
         />

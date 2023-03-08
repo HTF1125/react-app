@@ -1,43 +1,37 @@
 import Dashboard from "./pages/dashboard";
 import Securities from "./pages/securities";
+import Strategies from "./pages/strategies";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import MonitorHeartOutlinedIcon from "@mui/icons-material/MonitorHeartOutlined";
 import AssessmentOutlinedIcon from "@mui/icons-material/AssessmentOutlined";
 import DesignServicesOutlinedIcon from "@mui/icons-material/DesignServicesOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
+
 const routeContent = {
   Dashboard: {
-    Dashboard: {
-      icon: HomeOutlinedIcon,
-      to: "/dashboard",
-      page: <Dashboard />,
-    },
-  },
-  Market: {
-    Overview: {
-      icon: MonitorHeartOutlinedIcon,
-      to: "/markets/overview",
-      page: <Securities />,
-    },
+    icon: <HomeOutlinedIcon fontSize="large" />, //
+    to: "/dashboard",
+    page: <Dashboard />,
   },
   Strategy: {
-    Performance: {
-      icon: AutoGraphOutlinedIcon,
-      to: "/strategies/performances",
-      page: <Securities />,
-    },
+    icon: <AutoGraphOutlinedIcon fontSize="large" />,
+    to: "/strategies",
+    page: <Strategies />,
   },
-  Goal: {
-    Report: {
-      icon: AssessmentOutlinedIcon,
-      to: "/goals/report",
-    },
-    Design: {
-      icon: DesignServicesOutlinedIcon,
-      to: "/goals/design",
-    },
+  GoalReport: {
+    icon: <AssessmentOutlinedIcon fontSize="large"/>,
+    to: "/goals",
   },
-};
+  GoalDesign: {
+    icon: <DesignServicesOutlinedIcon fontSize="large" />,
+    to: "/design",
+  },
+  Metadata: {
+    icon: <MonitorHeartOutlinedIcon fontSize="large" />,
+    to: "/securities",
+    page: <Securities />,
+  }
+}
 
 export default routeContent;

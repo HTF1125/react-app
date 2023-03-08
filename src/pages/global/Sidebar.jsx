@@ -20,7 +20,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
+      <Typography  variant="h5">{title}</Typography>
       <Link to={to} />
     </MenuItem>
   );
@@ -38,26 +38,13 @@ const Sidebar = () => {
         key={title}
         title={title}
         to={item.to}
-        icon={<item.icon />}
+        icon={item.icon}
         selected={selected}
         setSelected={setSelected}
       />
     ));
   };
-  const renderMenuSection = (sections) => {
-    return Object.entries(sections).map(([sectionTitle, sectionItems]) => (
-      <>
-        <Typography
-          variant="h6"
-          color={colors.grey[300]}
-          sx={{ m: "15px 0 5px 20px" }}
-        >
-          {sectionTitle}
-        </Typography>
-        {renderMenuItems(sectionItems)}
-      </>
-    ));
-  };
+
 
   return (
     <Box
@@ -135,7 +122,7 @@ const Sidebar = () => {
           )} */}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            {renderMenuSection(routeContent)}
+            {renderMenuItems(routeContent)}
           </Box>
         </Menu>
       </ProSidebar>
